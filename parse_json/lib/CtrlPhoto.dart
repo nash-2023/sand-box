@@ -26,21 +26,3 @@ Future<List<Album>> fetchAlbum() async {
     ];
   }
 }
-
-Future<List<Album>> fetchAlbumPJ(http.Client client) async {
-  final response = await client.get(
-    Uri.parse('https://jsonplaceholder.typicode.com/albums'),
-  );
-  if (response.statusCode == 200) {
-    List<Map<String, dynamic>> y =
-        convert.jsonDecode(response.body).cast<Map<String, dynamic>>();
-    // List<Album> z = y.map((e) => Album.fromJson(e)).toList();
-    final z = y.map<Album>((e) => Album.fromJson(e)).toList();
-    return z;
-  } else {
-    print('Request failed with status: ${response.statusCode}.');
-    return [
-      const Album(userId: -1, id: -1, title: 'title'),
-    ];
-  }
-}

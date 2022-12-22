@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fetch_internet/Album.dart';
 import 'package:fetch_internet/CtrlAlbum.dart';
@@ -36,9 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<List<Album>>? myAlb;
   @override
   void initState() {
-    // myAlb = fetchAlbum();
-    myAlb = fetchAlbumPJ(http.Client());
-
+    myAlb = fetchAlbum();
     super.initState();
   }
 
@@ -50,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: FutureBuilder<List<Album>>(
           future: myAlb,
-          // initialData: [const Album(userId: -1, id: -1, title: 'title')],
+          initialData: [const Album(userId: -1, id: -1, title: 'title')],
           builder: (context, snapshot) {
             List<Widget> chldrn;
             if (snapshot.hasData) {
